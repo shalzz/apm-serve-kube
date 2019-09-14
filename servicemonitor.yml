@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: apm-serve-sm
+  labels:
+    app: apm-serve-sm
+    release: listless-fish
+spec:
+  endpoints:
+  - port: metrics
+    interval: 1s
+    path: /
+  selector:
+    matchLabels:
+      app: apm-serve
+  namespaceSelector:
+    any: true
